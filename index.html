@@ -45,9 +45,9 @@
 
   <script>
     const config = {
-      dataUrl: "Digger.data.unityweb",
-      frameworkUrl: "Digger.framework.js.unityweb",
-      codeUrl: "Digger.wasm.unityweb",
+      dataUrl: "hole.data.unityweb",
+      frameworkUrl: "hole.framework.js.unityweb",
+      codeUrl: "hole.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "incrediGames",
       productName: "Dig a hole",
@@ -59,7 +59,7 @@
     const loadingBarFill = document.querySelector("#loading-bar-fill");
 
     const unityLoader = document.createElement("script");
-    unityLoader.src = "Digger.loader.js";
+    unityLoader.src =hole.loader.js";
     unityLoader.onload = () => {
       createUnityInstance(canvas, config, (progress) => {
         loadingBarFill.style.width = `${progress * 100}%`;
