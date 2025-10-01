@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hole Digger</title>
+  <title>hole game</title>
   <style>
     html, body {
       margin: 0;
@@ -18,59 +18,27 @@
       display: block;
       background: black;
     }
-    #loading-bar {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50%;
-      height: 20px;
-      background: #333;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    #loading-bar-fill {
-      height: 100%;
-      width: 0%;
-      background: limegreen;
-      transition: width 0.2s;
-    }
   </style>
 </head>
 <body>
   <canvas id="unity-canvas"></canvas>
-  <div id="loading-bar">
-    <div id="loading-bar-fill"></div>
-  </div>
 
+  <!-- Carga del juego -->
+  <script src="hole.loader.js"></script>
   <script>
-    const config = {
+    createUnityInstance(document.querySelector("#unity-canvas"), {
       dataUrl: "hole.data.unityweb",
       frameworkUrl: "hole.framework.js.unityweb",
       codeUrl: "hole.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "incrediGames",
-      productName: "Dig a hole",
+      productName: "hole game",
       productVersion: "0.1",
-    };
-
-    const canvas = document.querySelector("#unity-canvas");
-    const loadingBar = document.querySelector("#loading-bar");
-    const loadingBarFill = document.querySelector("#loading-bar-fill");
-
-    const unityLoader = document.createElement("script");
-    unityLoader.src =hole.loader.js";
-    unityLoader.onload = () => {
-      createUnityInstance(canvas, config, (progress) => {
-        loadingBarFill.style.width = `${progress * 100}%`;
-        if (progress === 1) {
-          setTimeout(() => loadingBar.style.display = "none", 500);
-        }
-      }).catch((message) => {
-        console.error(message);
-      });
-    };
-    document.body.appendChild(unityLoader);
+    }).then((unityInstance) => {
+      console.log("Juego cargado correctamente");
+    }).catch((message) => {
+      console.error(message);
+    });
   </script>
 </body>
 </html>
